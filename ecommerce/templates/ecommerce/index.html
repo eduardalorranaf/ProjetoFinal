@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+
+<section class="main-home">
+    <div class="main-text">
+        <h5>Coleção Inverno</h5>
+        <h1>Nova Coleção <br> Inverno 2024</h1>
+        <p>Não há nada como essa tendência</p>
+
+        <a href="{% url "produtos" %}" class="main-btn">Compre Agora <i class='bx bx-right-arrow-alt' ></i></a>
+    </div>
+
+    <div class="down-arrow">
+        <a href="#trending" class="down"><i class='bx bx-down-arrow-alt' ></i></a>
+    </div>
+</section>
+
+<!-- Trending-Products  -->
+<section class="trending-product" id="trending">
+    <div class="center-text">
+        <h2>Nossos <span>Produtos</span> Populares</h2>
+    </div>
+
+    
+    
+    <div class="products">
+        {% for produto in produtos %}
+        <div class="row">
+            <img src="{{ produto.imagem.url }}" alt="{{produto.nome}}">
+            <div class="product-text">
+                <h5>{{produto.categoria}}</h5>
+            </div>
+            <div class="heart-icon">
+                <i class='bx bx-heart' ></i>
+            </div>
+            <div class="price">
+                <a href="{% url "detalhes" produto.id %}"><h4>{{produto.nome}}</h4></a>
+                <p>{{produto.preco}}</p>
+            </div>
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+    
+
+</section>
+
+<!-- contact section -->
+<section class="contact">
+    <div class="contact-info">
+        <div class="first-info">
+            <img src="{% static "expe/logomo.png" %}" alt="">
+
+            <p>(84) 99754-7120 Lucrecia, <br> Rio Grande do Norte - Brasil</p>
+            <p>auramoda100@gmail.com</p>
+
+            <div class="social-icon">
+                <a href=""><i class='bx bxl-facebook'></i></a>
+                <a href=""><i class='bx bxl-twitter' ></i></a>
+                <a href=""><i class='bx bxl-instagram' ></i></a>
+                <a href=""><i class='bx bxl-youtube' ></i></a>
+                <a href=""><i class='bx bxl-linkedin' ></i></a>
+            </div>
+        </div>
+
+        <div class="second-info">
+            <h4>Suporte</h4>
+            <p>Contate nós</p>
+            <p>Sobre a Página</p>
+            <p>Guia de tamanhos</p>
+            <p>Compras & Reembolso</p>
+            <p>Termos de Privacidade</p>
+        </div>
+
+        <div class="third-info">
+            <h4>Produtos</h4>
+            <p>Blusas</p>
+            <p>Calças</p>
+            <p>Jaquetas e Casacos</p>
+            <p>Vestidos</p>
+            <p>Conjuntos</p>
+            <p>Promoções</p>
+        </div>
+
+        <div class="fouth-info">
+            <h4>Compania</h4>
+            <p>Sobre a Gente</p>
+            <p>Blog</p>
+            <p>Afiliados</p>
+            <p>Login</p>
+        </div>
+    </div>
+</section>
+
+<div class="end-text">
+    <p>Copyright © @2024. Todos Direítos Reservado.Design por Aura Moda.</p>
+</div>
+
+
+
+{% endblock main %}

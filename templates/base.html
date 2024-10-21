@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+    <link rel="stylesheet" href="{% static "css/experimento.css" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+</head>
+
+<body>
+
+    <header>
+        <a href="{% url "home" %}" class="logo"><img src="{% static "expe/logomo.png" %}" alt=""></a>
+
+        <ul class="navmenu">
+            <li><a href="{% url "home" %}"></a>Home</li>
+            <li><a href="{% url "produtos" %}"></a>Shop</li>
+            <li><a href="{% url "produtos" %}"></a>Produtos</li>
+            <li><a href=""></a>Promoções</li>
+            <li><a href=""></a>Sobre</li>
+        </ul>
+
+        <div class="nav-icon">
+            <div id="search-icon">
+                <a href="#" id="toggle-search"><i class='bx bx-search'></i></a>
+                <div class="dropdown search-dropdown" id="search-dropdown">
+                    <input type="text" placeholder="Buscar roupas...">
+                </div>
+            </div>          
+                
+            <div id="user-icon">
+                <a href=""><i class='bx bx-user'></i></a>
+                <div class="dropdown login-dropdown" id="login-dropdown">
+                    <h3>Entrar</h3>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Senha">
+                    <button>Entrar</button>
+                    <div class="divider">
+                        <span>ou</span>
+                    </div>
+                    <a href="#">Criar conta</a>
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+            </div>
+            
+            <a href=""><i class='bx bx-cart'></i></a>
+
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+
+    </header>
+
+    {% block main %}
+    
+    {% endblock main %}
+
+    <script src="{% static "js/java.js" %}"></script>
+</body>
+
+</html>

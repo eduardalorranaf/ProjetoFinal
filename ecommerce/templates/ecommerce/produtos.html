@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/produtos.css" %}">
+
+<main class="container">
+    <div class="shop-container">
+        <aside class="sidebar">
+            <h2>Filtrar</h2>
+            <form method="get">
+                <div class="filter-section">
+                    <h3>Faixa de Preço</h3>
+                    <div class="price-range">
+                        <label for="preco_min">Preço Mínimo: <span id="preco_min_value">0</span></label>
+                        <input type="range" id="preco_min" name="preco_min" min="0" max="1000" step="5" value="0" oninput="document.getElementById('preco_min_value').textContent = this.value">
+        
+                        <label for="preco_max">Preço Máximo: <span id="preco_max_value">1000</span></label>
+                        <input type="range" id="preco_max" name="preco_max" min="0" max="1000" step="5" value="1000" oninput="document.getElementById('preco_max_value').textContent = this.value">
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Categorias</h3>
+                    <ul class="checkbox-list">
+                        <li><label><input type="checkbox" name="categoria" value="Jaquetas e Casacos"> Jaquetas e Casacos</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="Blusas"> Blusas</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="Calças"> Calças</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="Vestidos"> Vestidos</label></li>
+                        <li><label><input type="checkbox" name="categoria" value="Conjuntos"> Conjuntos</label></li>
+                    </ul>
+                </div>
+                <div class="filter-section">
+                    <h3>Tamanhos</h3>
+                    <ul class="checkbox-list">
+                        <li><label><input type="checkbox" name="tamanho" value="PP"> PP</label></li>
+                        <li><label><input type="checkbox" name="tamanho" value="P"> P</label></li>
+                        <li><label><input type="checkbox" name="tamanho" value="M"> M</label></li>
+                        <li><label><input type="checkbox" name="tamanho" value="G"> G</label></li>
+                        <li><label><input type="checkbox" name="tamanho" value="GG"> GG</label></li>
+                    </ul>
+                </div>
+                <div class="filter-section">
+                    <h3>Ordena por</h3>
+                    <select name="ordenar">
+                        <option value="">Selecione uma opção</option>
+                        <option value="price_asc">Do menor para maior preço</option>
+                        <option value="price_desc">Do maior para menor preço</option>
+                        <option value="newest">Novos primeiro</option>
+                    </select>
+                </div>
+    
+                <button type="submit" class="filter-button">FILTRAR</button>
+            </form>
+        </aside>
+        <div class="product-grid">
+            {% for produto in produtos %}
+            <div class="product-card">
+                <img src="{{produto.imagem.url}}" alt="{{produto.nome}}">
+                <div class="sale-tag">Promoção</div>
+                <button class="wishlist-button">♡</button>
+                <div class="product-info">
+                    <h3 class="product-name">{{produto.nome}}</h3>
+                    <div>
+                        <span class="product-price">R$ {{produto.preco}}</span>
+                    </div>
+                    <p class="installment">3x de R$29,99 sem juros</p>
+                    <a href="{% url "detalhes" produto.id %}"><button class="buy-button">COMPRAR</button></a>
+                </div>
+            </div>
+            {% endfor %}    
+        </div>
+    </div>
+</main>
+
+
+{% endblock main %}

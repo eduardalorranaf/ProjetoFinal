@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/detalhe.css" %}">
+
+<main class="container">
+    <div class="product-detail">
+        <div class="product-images">
+            <img src="{{produto.imagem.url}}" alt="Produto" class="main-image" id="mainImage">
+            <div class="thumbnail-container">
+                <img src="https://via.placeholder.com/60x60" alt="Thumbnail 1" class="thumbnail">
+                <img src="https://via.placeholder.com/60x60" alt="Thumbnail 2" class="thumbnail">
+                <img src="https://via.placeholder.com/60x60" alt="Thumbnail 3" class="thumbnail">
+                <img src="https://via.placeholder.com/60x60" alt="Thumbnail 4" class="thumbnail">
+            </div>
+        </div>
+        <div class="product-info">
+            <h1>{{produto.nome}}</h1>
+            <div class="price">{{produto.preco}}</div>
+            <p class="description">{{produto.descricao}}</p>
+            <div class="size-selector">
+                <select name="variacao_id" id="size" required>
+                    {% for variacao in variacoes %}
+                        <option value="{{variacao.id}}">{{variacao.tamanho}}</option>
+                    {% endfor %}
+                    
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" id="addToCart">Adicionar ao Carrinho</button>
+                <button class="btn btn-secondary" id="addToWishlist">❤</button>
+            </div>
+            <div class="product-details">
+                <h2>Detalhes do Produto</h2>
+                <ul>
+                    <li>Material: 60% Algodão, 40% Poliéster</li>
+                    <li>Lavável na máquina</li>
+                    <li>Ideal para atividades ao ar livre</li>
+                    <li>Disponível em várias cores</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="recommended-products">
+        <h2>Produtos Recomendados</h2>
+        <div class="product-grid">
+            {% for produto_recomendado in produtos_recomendados %}
+            <div class="product-card">
+                <a href="{% url "detalhes" produto_recomendado.id %}">
+                    <img src="{{produto_recomendado.imagem.url}}" alt="{{produto_recomendado.nome}}">
+                    <h3>{{produto_recomendado.nome}}</h3>
+                    <p>{{produto_recomendado.preco}}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock main %}
