@@ -1,0 +1,239 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --accent-color: #ff0000;
+    --text-color: #333333;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+    --border-color: #eaeaea;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 8.5%;
+}
+
+.dashboard-container {
+    display: flex;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1600px;
+    height: 80vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--light-gray);
+    padding: 30px 20px;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: var(--accent-color);
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--primary-color);
+}
+
+.btn-new-product {
+    background-color: #000000;
+    color: var(--secondary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-new-product:hover {
+    background-color: #333333;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--light-gray);
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+td {
+    background-color: var(--secondary-color);
+}
+
+tr {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #4CAF50;
+}
+
+.btn-delete {
+    background-color: var(--accent-color);
+}
+
+.btn-variation {
+    background-color: #2196F3;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.staff-badge {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.pagination-container {
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.pagination-item {
+    margin: 0 2px;
+}
+
+.pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pagination-link:hover {
+    background-color: var(--light-gray);
+}
+
+.pagination-item.active .pagination-link {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    border-color: var(--accent-color);
+}
+
+.pagination-item.disabled .pagination-link {
+    color: var(--medium-gray);
+    pointer-events: none;
+}

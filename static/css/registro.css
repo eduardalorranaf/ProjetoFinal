@@ -1,0 +1,121 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --accent-color: #ff0000;
+    --text-color: #333333;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+    --border-color: #eaeaea;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8%;
+    
+}
+
+
+.register-container {
+    background-color: var(--secondary-color);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
+
+}
+
+.register-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-with-icon input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.input-with-icon svg {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    fill: var(--medium-gray);
+}
+
+.register-button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 20px;
+}
+
+.register-button:hover {
+    background-color: var(--accent-color);
+}
+
+.register-button:active {
+    transform: scale(0.98);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: var(--primary-color);
+}

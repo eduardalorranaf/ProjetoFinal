@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Carrinho de Compras- Aura Moda{% endblock title %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/carrinho.css" %}">
+
+<main>
+<div class="container">
+    <h1 class="cart-title">Meu Carrinho</h1>   
+   
+    <div class="cart-container">
+        <div class="cart-items">
+            {% for item in itens %}
+            <div class="cart-item">
+                <img src="{{ item.variacao.produto.imagem.url }}" alt="{{ item.variacao.produto.nome }}" class="item-image">
+                <div class="item-details">
+                    <h3 class="item-name">{{ item.variacao.produto.nome }}</h3>
+                    <div class="item-controls">
+                        <select class="quantity-select" name="quantidade" data-item-id="{{ item.id }}">
+                            {% for i in item.quantidade_opcoes %}
+                            <option value="{{ i }}" {% if i == item.quantidade %}selected{% endif %}>{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="size-label">{{ item.variacao.tamanho }}</span>
+                        <span class="item-price">R$ {{ item.preco }}</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <form action="{% url "remover_carrinho" item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="action-button remove-item" data-item-id="{{ item.id }}">✕</button>
+                    </form>
+                    
+                </div>
+            </div>
+            {% empty %}
+            <h3>Seu carrinho está vazio</h3>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary-item">
+                <span>Subtotal</span>
+                <span>R$ {{ subtotal|floatformat:2 }}</span> 
+            </div>
+            <div class="summary-item">
+                <span>Taxa</span>
+                <span>R$ {{ taxa|floatformat:2 }}</span>
+            </div>
+            <div class="summary-item">
+                <span>Frete</span>
+                <span>R$ {{ frete|floatformat:2 }}</span>
+            </div>
+            <div class="summary-total">
+                <span>Total</span>
+                <span>R$ {{ total|floatformat:2 }}</span>
+            </div>
+            <button class="checkout-button">Finalizar Compra</button>
+        </div>
+        
+        
+        
+    </div>
+
+    
+</div>
+</main> 
+
+{% endblock main %}

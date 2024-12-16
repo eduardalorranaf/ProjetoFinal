@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editor Produto - Aura Moda{% endblock title %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/adicionar-editar.css" %}">
+
+<div class="body">
+    <div class="create-product-container">
+        <h1>Editar Produto</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="product-name">Nome do Produto</label>
+                {{form.nome}}
+            </div>
+            <div class="form-group">
+                <label for="product-description">Descrição</label>
+                {{form.descricao}}
+            </div>
+            <div class="form-group">
+                <label for="product-price">Preço (R$)</label>
+                {{form.preco}}
+            </div>
+            <div class="form-group">
+                <label for="product-stock">Estoque</label>
+                {{form.estoque}}
+            </div>
+            <div class="form-group">
+                <label for="product-category">Categoria</label>
+                {{form.categoria}}
+            </div>
+            <div class="form-group">
+                <label for="product-image">Imagem do Produto</label>
+                {{form.imagem}}
+            </div>
+            <button type="submit" class="submit-button">Editar Produto</button>
+        </form>
+    </div>
+</div>
+
+{% endblock main %}
+

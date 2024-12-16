@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-
+{% block title %}Detalhes {{produto.nome}} - Aura Moda{% endblock title %}
 
 {% block main %}
 
@@ -31,7 +31,26 @@
                 </select>
             </div>
             <div class="buttons">
-                <button class="btn btn-primary" id="addToCart">Adicionar ao Carrinho</button>
+                <form action="{% url 'adicionar_carrinho' variacao_id=0 %}" method="POST" id="addCartForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="variacao_id" id="variacaoId">
+                    <button type="submit" class="btn btn-primary" id="addToCart">Adicionar ao Carrinho</button>
+                </form>
+
+                <script>
+                    const selectElement = document.getElementById('size');
+                    const hiddenInput = document.getElementById('variacaoId');
+                    const form = document.getElementById('addCartForm');
+                
+                    // Atualiza o campo oculto com o ID da variação selecionada
+                    selectElement.addEventListener('change', () => {
+                        hiddenInput.value = selectElement.value;
+                    });
+                
+                    // Inicializa com o valor atual do select, caso haja
+                    hiddenInput.value = selectElement.value;
+                </script>
+                
                 <button class="btn btn-secondary" id="addToWishlist">❤</button>
             </div>
             <div class="product-details">

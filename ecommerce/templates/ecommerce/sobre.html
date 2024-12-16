@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sobre - Aura Moda{% endblock title %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/sobre.css" %}">
+
+<div class="body">
+    <div class="header">
+        <div class="container">
+            <h1>Aura Moda</h1>
+            <p class="tagline">Elegância e personalidade para a mulher moderna</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Sobre Nós</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Bem-vinda à Aura Moda, onde o estilo encontra a essência feminina. Somos uma loja dedicada a oferecer peças de moda que celebram a individualidade, o conforto e a elegância de nossas clientes.</p><br>
+                <p>Nosso objetivo é trazer tendências modernas e atemporais que reflitam a personalidade única de cada mulher. Trabalhamos com carinho e atenção aos detalhes para trazer coleções que valorizam todos os corpos, estilos e ocasiões, porque acreditamos que a moda é uma forma de expressão pessoal.</p><br>
+                <p>Mais do que vender roupas, queremos construir uma conexão com você. Nossa missão é ser uma parceira no seu dia a dia, ajudando-a a se sentir confiante e maravilhosa, seja qual for o momento.</p><br>
+                <p>Obrigada pela visita. Sinta-se à vontade para explorar, se inspirar e criar looks incríveis com a Aura Moda.</p>
+            </div>
+            <div class="about-image">
+                <img src="{% static "expe/logoaura.png" %}" alt="Loja Aura Moda">
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Qualidade Premium</h3>
+                <p>Cada peça possui os melhores materiais e técnicas de confecção para garantir peças duráveis e confortáveis.</p>
+            </div>
+            <div class="feature">
+                <h3>Estilo Único</h3>
+                <p>Nossas coleções são cuidadosamente curadas para oferecer peças exclusivas e versáteis.</p>
+            </div>
+            <div class="feature">
+                <h3>Atendimento Personalizado</h3>
+                <p>Nossa equipe está sempre pronta para ajudar você a encontrar o look perfeito para cada ocasião.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock main %}
+
+
+
+
+

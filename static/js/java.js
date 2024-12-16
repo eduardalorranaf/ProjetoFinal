@@ -73,3 +73,15 @@ menu.onclick = () => {
     navmenu.classList.toggle('open');
 }
 
+const selectElement = document.getElementById('size');
+const hiddenInput = document.getElementById('variacaoId');
+const form = document.getElementById('addCartForm');
+                
+// Atualiza o campo oculto com o ID da variação selecionada
+selectElement.addEventListener('change', () => {
+    hiddenInput.value = selectElement.value;
+});
+                
+// Inicializa com o valor atual do select, caso haja
+hiddenInput.value = selectElement.value;
+

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard - Aura Moda{% endblock title %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+
+<div class="body">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h1>Aura Moda Admin</h1>
+            <ul class="sidebar-menu">
+                <li><a href="#produtos" class="active" data-section="produtos">Produtos</a></li>
+                <li><a href="#usuarios" data-section="usuarios">Usuários</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section id="produtos" class="section active">
+                <div class="section-header">
+                    <h2>Produtos</h2>
+                    <a href="{% url "cadastro" %}"><button class="btn-new-product">Cadastrar novo produto</button></a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Categoria</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produto in produtos %}
+                        
+                        <tr>
+                            <td><img src="{{produto.imagem.url}}" alt="{{produto.nome}}" class="product-image"></td>
+                            <td>{{produto.nome}}</td>
+                            <td>{{produto.descricao}}</td>
+                            <td>{{produto.preco}}</td>
+                            <td>{{produto.estoque}}</td>
+                            <td>{{produto.categoria.nome}}</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="{% url "editar_produto" produto.id %}"><button class="btn btn-edit">Editar</button></a>
+                                    <form action="{% url "remover_produto" produto.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-delete">Excluir</button>
+                                    </form>   
+                                    <button class="btn btn-variation">Variação</button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                {% include 'components/pagination.html' with page_obj=produtos query_param="page_produtos"%}
+
+            </section>
+
+            <section id="usuarios" class="section">
+                <div class="section-header">
+                    <h2>Usuários</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome Completo</th>
+                            <th>Nome de Usuário</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Staff</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cliente in clientes %}
+                        <tr>
+                            <td>{{cliente.nome_completo}}</td>
+                            <td>{{cliente.username}}</td>
+                            <td>{{cliente.email}}</td>
+                            <td>{{cliente.telefone}}</td>
+                            <td>
+                            {% if cliente.is_staff %}<span class="staff-badge">Staff</span>{% endif %}
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <form action="{% url 'dashboard' %}" style="display: inline;" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_cliente" value="{{ cliente.id }}">
+                                        <button class="btn btn-delete">Excluir Conta</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+
+                {% include "components/pagination.html" with page_obj=clientes query_param="page_clientes"%}
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            const sections = document.querySelectorAll('.section');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+
+                    // Remove active class from all links and sections
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Add active class to clicked link and corresponding section
+                    this.classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</div>
+{% endblock main %}
+

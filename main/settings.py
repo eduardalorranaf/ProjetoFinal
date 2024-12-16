@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ecommerce'
+    'ecommerce',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
+AUTH_USER_MODEL = 'ecommerce.Cliente'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'

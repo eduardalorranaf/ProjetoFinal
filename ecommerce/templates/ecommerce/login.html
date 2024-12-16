@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - Aura Moda{% endblock title %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+
+<div class="body">
+    <div class="login-container">
+        <h1 class="login-title">Entrar</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            <div class="form-group">
+                <div class="input-with-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+                    </svg>
+                    <input type="text" id="username" name="username" placeholder="Nome de Usuário" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-with-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z" />
+                    </svg>
+                    <input type="password" id="password" name="password" placeholder="Senha" required>
+                </div>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit" class="login-button">Entrar</button>
+
+            <div class="register-link">
+                Não tem uma conta? <a href="{% url "registro" %}">Cadastre-se</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock main %}
+
+

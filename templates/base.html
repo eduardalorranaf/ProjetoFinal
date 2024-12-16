@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecommerce</title>
+    <title>{% block title %}Ecommerce{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "css/experimento.css" %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,37 +26,49 @@
         <a href="{% url "home" %}" class="logo"><img src="{% static "expe/logomo.png" %}" alt=""></a>
 
         <ul class="navmenu">
-            <li><a href="{% url "home" %}"></a>Home</li>
-            <li><a href="{% url "produtos" %}"></a>Shop</li>
-            <li><a href="{% url "produtos" %}"></a>Produtos</li>
-            <li><a href=""></a>Promoções</li>
-            <li><a href=""></a>Sobre</li>
+            <li><a href="{% url 'home' %}">Home</a></li>  
+            <li><a href="{% url 'produtos' %}">Produtos</a></li>  
+            <li><a href="{% url 'sobre' %}">Sobre</a></li>  
+            {% if user.is_staff %}
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>    
+            {% endif %}
+            
         </ul>
 
         <div class="nav-icon">
             <div id="search-icon">
+                <form action="{% url "home" %}" method="get">
                 <a href="#" id="toggle-search"><i class='bx bx-search'></i></a>
                 <div class="dropdown search-dropdown" id="search-dropdown">
-                    <input type="text" placeholder="Buscar roupas...">
+                    <input type="text" name="search" placeholder="Buscar roupas..." value="{{ search_query|default:'' }}">
                 </div>
+                </form>
             </div>          
                 
             <div id="user-icon">
-                <a href=""><i class='bx bx-user'></i></a>
+                {% if user.is_authenticated %}
+                    <a href="{% url "perfil_usuario" %}"><i class='bx bx-user'></i></a>
+                {% else %}
+              
+                <a href="#"><i class='bx bx-user'></i></a>
                 <div class="dropdown login-dropdown" id="login-dropdown">
                     <h3>Entrar</h3>
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Senha">
-                    <button>Entrar</button>
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <input type="text" name="username" placeholder="Nome de Usuário" required>
+                        <input type="password" name="password" placeholder="Senha" required>
+                        <button type="submit">Entrar</button>
+                    </form>
                     <div class="divider">
                         <span>ou</span>
                     </div>
-                    <a href="#">Criar conta</a>
+                    <a href="{% url "registro" %}">Criar conta</a>
                     <a href="#">Esqueceu a senha?</a>
                 </div>
+                {% endif %}
             </div>
             
-            <a href=""><i class='bx bx-cart'></i></a>
+            <a href="{% url "carrinho" %}"><i class='bx bx-cart'></i></a>
 
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
@@ -66,6 +78,58 @@
     {% block main %}
     
     {% endblock main %}
+
+    <!-- contact section -->
+    <section class="contact">
+        <div class="contact-info">
+            <div class="first-info">
+                <img src="{% static "expe/logomo.png" %}" alt="">
+
+                <p>(84) 99754-7120 Lucrecia, <br> Rio Grande do Norte - Brasil</p>
+                <p>auramoda100@gmail.com</p>
+
+                <div class="social-icon">
+                    <a href=""><i class='bx bxl-facebook'></i></a>
+                    <a href=""><i class='bx bxl-twitter' ></i></a>
+                    <a href=""><i class='bx bxl-instagram' ></i></a>
+                    <a href=""><i class='bx bxl-youtube' ></i></a>
+                    <a href=""><i class='bx bxl-linkedin' ></i></a>
+                </div>
+            </div>
+
+            <div class="second-info">
+                <h4>Suporte</h4>
+                <p>Contate nós</p>
+                <p>Sobre a Página</p>
+                <p>Guia de tamanhos</p>
+                <p>Compras & Reembolso</p>
+                <p>Termos de Privacidade</p>
+            </div>
+
+            <div class="third-info">
+                <h4>Produtos</h4>
+                <p>Blusas</p>
+                <p>Calças</p>
+                <p>Jaquetas e Casacos</p>
+                <p>Vestidos</p>
+                <p>Conjuntos</p>
+                <p>Promoções</p>
+            </div>
+
+            <div class="fouth-info">
+                <h4>Compania</h4>
+                <a href="{% url "sobre" %}"><p>Sobre a Gente</p></a>
+                <p>Blog</p>
+                <p>Afiliados</p>
+                <a href="{% url "login" %}"><p>Login</p></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="end-text">
+        <p>Copyright © @2024. Todos Direítos Reservado.Design por Aura Moda.</p>
+    </div>
+
 
     <script src="{% static "js/java.js" %}"></script>
 </body>

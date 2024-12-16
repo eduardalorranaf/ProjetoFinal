@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static "css/adicionar-editar.css" %}">
+
+<div class="body">
+    <div class="create-product-container">
+        <h1>Cadastrar Novo Endereço</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="product-name">Endereço</label>
+                {{endereco_form.endereco}}
+            </div>
+            <div class="form-group">
+                <label for="product-description">Cidade</label>
+                {{endereco_form.cidade}}
+            </div>
+            <div class="form-group">
+                <label for="product-price">Estado</label>
+                {{endereco_form.estado}}
+            </div>
+            <div class="form-group">
+                <label for="product-stock">CEP</label>
+                {{endereco_form.cep}}
+            </div>
+            <button type="submit" class="submit-button">Criar Produto</button>
+        </form>
+    </div>
+</div>
+
+{% endblock main %}
+
